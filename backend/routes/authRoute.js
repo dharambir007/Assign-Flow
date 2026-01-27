@@ -141,8 +141,20 @@ authRoutes.post("/admin-signup", async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Admin signup error:", error);
-        res.status(500).json({ message: "Error creating admin account" });
+        console.error("Admin signup error:", error.message);
+        console.error("Full error:", error);
+        
+        // Handle specific MongoDB errors
+        if (error.code === 11000) {
+            return res.status(400).json({ message: "Email already registered" });
+        }
+        
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(e => e.message);
+            return res.status(400).json({ message: messages.join(', ') });
+        }
+        
+        res.status(500).json({ message: "Error creating admin account: " + error.message });
     }
 });
 
