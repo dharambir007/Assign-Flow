@@ -24,6 +24,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Trust proxy for Vercel/production
+app.set('trust proxy', 1);
+
 app.use(session({
     secret: process.env.SESSION_SECRET || "secretkey@567",
     resave: false,
@@ -31,7 +34,8 @@ app.use(session({
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: 'lax'
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     }
 }));
 
