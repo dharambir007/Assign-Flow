@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute'
 // Auth Pages
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
+import AdminSignup from './pages/auth/AdminSignup'
 import ForgotPassword from './pages/auth/ForgotPassword'
 
 // Student Pages
@@ -49,6 +50,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/admin-signup" element={<AdminSignup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Protected Routes */}

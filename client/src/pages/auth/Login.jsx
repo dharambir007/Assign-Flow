@@ -606,6 +606,13 @@ const Login = () => {
                 Create account
               </Link>
             </p>
+          ) : selectedRole === 'admin' ? (
+            <p style={styles.footerText}>
+              Create new admin account?{' '}
+              <Link to="/admin-signup" style={styles.footerLink}>
+                Sign Up
+              </Link>
+            </p>
           ) : (
             <p style={styles.footerText}>
               Need assistance?{' '}

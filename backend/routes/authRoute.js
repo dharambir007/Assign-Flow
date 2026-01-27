@@ -112,6 +112,40 @@ authRoutes.post("/signup", async (req, res) => {
     }
 });
 
+authRoutes.post("/admin-signup", async (req, res) => {
+    try {
+        const { name, email, phone, password } = req.body;
+
+        if (!name || !email || !phone || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "Email already registered" });
+        }
+
+        const newAdmin = new User({
+            name,
+            email,
+            phone,
+            password,
+            role: "admin"
+        });
+
+        await newAdmin.save();
+
+        res.status(201).json({ 
+            success: true,
+            message: "Admin account created successfully" 
+        });
+
+    } catch (error) {
+        console.error("Admin signup error:", error);
+        res.status(500).json({ message: "Error creating admin account" });
+    }
+});
+
 authRoutes.post("/forgot-password", async (req, res) => {
     try {
         const { email } = req.body;
