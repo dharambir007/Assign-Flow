@@ -55,7 +55,14 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, async () => {
-    console.log(`Server started on port ${PORT}`);
-    await verifyConnection();
-});
+
+// Only listen if not in serverless environment
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, async () => {
+        console.log(`Server started on port ${PORT}`);
+        await verifyConnection();
+    });
+}
+
+// Export for Vercel serverless
+module.exports = app;
