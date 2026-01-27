@@ -1,0 +1,42 @@
+node_modules/
+*.log
+.DS_Store
+.vscode/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Build outputs
+dist/
+build/
+
+# Backend uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+# Coverage
+coverage/
+
+# Cache
+.cache/
+.npm/
+*.tsbuildinfo
