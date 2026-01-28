@@ -3,14 +3,14 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const cors = require("cors");
-const connectDB = require("./config/db");
-const { verifyConnection } = require("./utils/emailService");
+const connectDB = require("../backend/config/db");
+const { verifyConnection } = require("../backend/utils/emailService");
 
-const authRoutes = require("./routes/authRoute");
-const adminRoutes = require("./routes/adminRoute");
-const studentRoutes = require("./routes/studentRoute");
-const professorRoutes = require("./routes/professorRoute");
-const hodRoutes = require("./routes/hodRoute");
+const authRoutes = require("../backend/routes/authRoute");
+const adminRoutes = require("../backend/routes/adminRoute");
+const studentRoutes = require("../backend/routes/studentRoute");
+const professorRoutes = require("../backend/routes/professorRoute");
+const hodRoutes = require("../backend/routes/hodRoute");
 
 connectDB();
 
