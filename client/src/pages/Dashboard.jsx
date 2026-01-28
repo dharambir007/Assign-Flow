@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   CheckCircle,
   ArrowRight,
@@ -51,6 +52,7 @@ function AnimatedSection({ children, delay = 0, style = {} }) {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [heroVisible, setHeroVisible] = useState(false);
 
@@ -62,7 +64,7 @@ export default function Dashboard() {
   }, []);
 
   const handleSignIn = () => {
-    window.location.href = '/login';
+    navigate('/login');
   };
 
   // Blue theme colors

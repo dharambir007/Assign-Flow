@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import {
   Mail,
@@ -13,6 +14,7 @@ import {
 } from 'lucide-react';
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1); // 1: email, 2: otp, 3: new password
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
@@ -108,7 +110,7 @@ const ForgotPassword = () => {
     try {
       await api.post('/api/auth/reset-password', { email, otp, password });
       setSuccess('Password reset successfully. Redirecting to login...');
-      setTimeout(() => window.location.href = '/login', 2000);
+      setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to reset password. Please try again.');
     } finally {

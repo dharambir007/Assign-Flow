@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/Layout'
 import api from '../../services/api'
 import {
@@ -22,6 +23,7 @@ import {
 } from 'lucide-react'
 
 const MyAssignments = () => {
+  const navigate = useNavigate()
   const [assignments, setAssignments] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('')
@@ -427,7 +429,7 @@ const MyAssignments = () => {
               </p>
               {!filter && (
                 <button
-                  onClick={() => window.location.href = '/student/upload'} // Using simple redirect for empty state action
+                  onClick={() => navigate('/student/upload')} // Using simple redirect for empty state action
                   style={{
                     ...styles.submitBtn,
                     backgroundColor: 'var(--accent-600)',
