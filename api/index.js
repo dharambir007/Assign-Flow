@@ -1,8 +1,10 @@
 require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const session = require("express-session");
 const cors = require("cors");
+
 const connectDB = require("../backend/config/db");
 const { verifyConnection } = require("../backend/utils/emailService");
 
@@ -14,17 +16,16 @@ const hodRoutes = require("../backend/routes/hodRoute");
 
 connectDB();
 
-// Remove trailing slash from CLIENT_URL if present
 const clientUrl = (process.env.CLIENT_URL || "http://localhost:5173").replace(/\/$/, '');
 
 app.use(cors({
     origin: clientUrl,
     credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Trust proxy for Vercel/production
 app.set('trust proxy', 1);
 
 app.use(session({
@@ -39,13 +40,13 @@ app.use(session({
     }
 }));
 
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/student", studentRoutes);
-app.use("/api/professor", professorRoutes);
-app.use("/api/hod", hodRoutes);
+app.use("/auth", authRoutes);
+app.use("/admin", adminRoutes);
+app.use("/student", studentRoutes);
+app.use("/professor", professorRoutes);
+app.use("/hod", hodRoutes);
 
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
     res.json({ status: "ok", message: "Server is running" });
 });
 
@@ -56,7 +57,6 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
-// Only listen if not in serverless environment
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, async () => {
         console.log(`Server started on port ${PORT}`);
@@ -64,5 +64,4 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-// Export for Vercel serverless
 module.exports = app;
