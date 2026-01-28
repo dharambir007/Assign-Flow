@@ -40,13 +40,13 @@ app.use(session({
     }
 }));
 
-app.use("/auth", authRoutes);
-app.use("/admin", adminRoutes);
-app.use("/student", studentRoutes);
-app.use("/professor", professorRoutes);
-app.use("/hod", hodRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/student", studentRoutes);
+app.use("/api/professor", professorRoutes);
+app.use("/api/hod", hodRoutes);
 
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
     res.json({ status: "ok", message: "Server is running" });
 });
 
