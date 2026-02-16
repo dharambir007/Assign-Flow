@@ -30,7 +30,7 @@ const StudentAssignments = () => {
 
   const fetchAssignments = async () => {
     try {
-      const response = await api.get(`/api/professor/students/${encodeURIComponent(email)}/assignments`)
+      const response = await api.get(`/professor/students/${encodeURIComponent(email)}/assignments`)
       setAssignments(response.data.assignments)
     } catch (error) {
       console.error('Error fetching assignments:', error)

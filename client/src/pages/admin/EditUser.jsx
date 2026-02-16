@@ -41,8 +41,8 @@ const EditUser = () => {
   const fetchUserDataAndDepartments = async () => {
     try {
       const [userRes, deptRes] = await Promise.all([
-        api.get(`/api/admin/users/${id}`),
-        api.get('/api/admin/departments')
+        api.get(`/admin/users/${id}`),
+        api.get('/admin/departments')
       ])
 
       const user = userRes.data.user
@@ -73,7 +73,7 @@ const EditUser = () => {
     setSubmitting(true)
 
     try {
-      await api.put(`/api/admin/users/${id}`, formData)
+      await api.put(`/admin/users/${id}`, formData)
       setSuccess('Profile updated successfully!')
       setTimeout(() => navigate('/admin/users'), 2000)
     } catch (error) {

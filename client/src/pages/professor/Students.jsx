@@ -24,7 +24,7 @@ const Students = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await api.get('/api/professor/students')
+      const response = await api.get('/professor/students')
       setStudents(response.data.students)
     } catch (error) {
       console.error('Error fetching students:', error)

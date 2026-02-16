@@ -34,7 +34,7 @@ const CreateDepartment = () => {
     setLoading(true)
 
     try {
-      await api.post('/api/admin/departments', formData)
+      await api.post('/admin/departments', formData)
       setSuccess('Department registered successfully!')
       setFormData({ departmentName: '', departmentCode: '' })
       setTimeout(() => navigate('/admin/departments'), 2000)

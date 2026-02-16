@@ -35,7 +35,7 @@ const ViewAssignment = () => {
 
   const fetchAssignment = async () => {
     try {
-      const response = await api.get(`/api/professor/assignments/${id}`)
+      const response = await api.get(`/professor/assignments/${id}`)
       setAssignment(response.data.assignment)
     } catch (error) {
       console.error('Error fetching assignment:', error)
@@ -48,7 +48,7 @@ const ViewAssignment = () => {
   const handleDownload = async () => {
     try {
       console.log('Initiating download for ID:', id);
-      const response = await api.get(`/api/professor/assignments/${id}/download`);
+      const response = await api.get(`/professor/assignments/${id}/download`);
 
       if (response.data.downloadUrl) {
         console.log('Opening Cloudinary URL:', response.data.downloadUrl);

@@ -36,7 +36,7 @@ const ReviewAssignment = () => {
 
   const fetchAssignment = async () => {
     try {
-      const response = await api.get(`/api/hod/assignments/${id}`)
+      const response = await api.get(`/hod/assignments/${id}`)
       setAssignment(response.data.assignment)
     } catch (error) {
       console.error('Error fetching assignment:', error)
@@ -48,7 +48,7 @@ const ReviewAssignment = () => {
 
   const handleDownload = async () => {
     try {
-      const response = await api.get(`/api/hod/assignments/${id}/download`);
+      const response = await api.get(`/hod/assignments/${id}/download`);
 
       if (response.data.downloadUrl) {
         window.open(response.data.downloadUrl, '_blank');
@@ -70,7 +70,7 @@ const ReviewAssignment = () => {
     setError('')
 
     try {
-      await api.post(`/api/hod/assignments/${id}/approve`, { remarks })
+      await api.post(`/hod/assignments/${id}/approve`, { remarks })
       alert('Assignment approved and marked as Submitted (Final Approved)')
       navigate('/hod/assignments')
     } catch (error) {
@@ -95,7 +95,7 @@ const ReviewAssignment = () => {
     setError('')
 
     try {
-      await api.post(`/api/hod/assignments/${id}/reject`, { remarks })
+      await api.post(`/hod/assignments/${id}/reject`, { remarks })
       alert('Assignment rejected')
       navigate('/hod/assignments')
     } catch (error) {

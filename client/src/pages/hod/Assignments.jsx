@@ -44,7 +44,7 @@ const Assignments = () => {
       params.append('page', page)
       params.append('limit', 10)
 
-      const response = await api.get(`/api/hod/assignments?${params}`)
+      const response = await api.get(`/hod/assignments?${params}`)
       setAssignments(response.data.assignments)
       setPagination(response.data.pagination)
     } catch (error) {

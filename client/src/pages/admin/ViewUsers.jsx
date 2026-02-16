@@ -32,7 +32,7 @@ const ViewUsers = () => {
   const fetchUsers = async () => {
     setLoading(true)
     try {
-      const response = await api.get('/api/admin/users', {
+      const response = await api.get('/admin/users', {
         params: { page: currentPage, search, type: filterType }
       })
       setUsers(response.data.users || [])
@@ -47,7 +47,7 @@ const ViewUsers = () => {
   const handleDelete = async (id) => {
     if (!confirm('Delete this user?')) return
     try {
-      await api.delete(`/api/admin/users/${id}`)
+      await api.delete(`/admin/users/${id}`)
       fetchUsers()
     } catch (error) {
       console.error('Error deleting user:', error)

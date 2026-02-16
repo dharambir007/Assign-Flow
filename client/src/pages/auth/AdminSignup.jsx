@@ -85,7 +85,7 @@ const AdminSignup = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/auth/admin-signup', {
+      await api.post('/auth/admin-signup', {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,

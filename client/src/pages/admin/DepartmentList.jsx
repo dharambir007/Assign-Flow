@@ -20,7 +20,7 @@ const DepartmentList = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await api.get('/api/admin/departments')
+      const response = await api.get('/admin/departments')
       setDepartments(response.data.departments || [])
     } catch (error) {
       console.error('Error fetching departments:', error)
@@ -32,7 +32,7 @@ const DepartmentList = () => {
   const handleDelete = async (id) => {
     if (!confirm('Delete this department?')) return
     try {
-      await api.delete(`/api/admin/departments/${id}`)
+      await api.delete(`/admin/departments/${id}`)
       fetchDepartments()
     } catch (error) {
       console.error('Error deleting department:', error)

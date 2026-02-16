@@ -35,7 +35,7 @@ const MyAssignments = () => {
 
   const fetchAssignments = async () => {
     try {
-      const response = await api.get('/api/student/assignments')
+      const response = await api.get('/student/assignments')
       setAssignments(response.data.assignments || [])
     } catch (error) {
       console.error('Error fetching assignments:', error)
@@ -46,7 +46,7 @@ const MyAssignments = () => {
 
   const handleSubmitForReview = async (id) => {
     try {
-      await api.post(`/api/student/submit/${id}`)
+      await api.post(`/student/submit/${id}`)
       setAlert({ show: true, type: 'success', message: 'Assignment submitted for review successfully!' })
       fetchAssignments()
     } catch (error) {

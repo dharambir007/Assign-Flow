@@ -71,7 +71,7 @@ const BulkUpload = () => {
     data.append('category', category)
 
     try {
-      await api.post('/api/student/bulk-upload', data, {
+      await api.post('/student/bulk-upload', data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       setSuccess(`${files.length} assignments uploaded successfully!`)

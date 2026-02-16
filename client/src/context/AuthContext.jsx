@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await api.post('/api/auth/login', { email, password })
+      const response = await api.post('/auth/login', { email, password })
       const userData = response.data.user
       setUser(userData)
       localStorage.setItem('user', JSON.stringify(userData))
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await api.post('/api/auth/logout')
+      await api.post('/auth/logout')
     } catch (error) {
       console.error('Logout error:', error)
     }

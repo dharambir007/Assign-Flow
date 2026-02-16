@@ -31,7 +31,7 @@ const EditDepartment = () => {
 
   const fetchDepartment = async () => {
     try {
-      const response = await api.get(`/api/admin/departments/${id}`)
+      const response = await api.get(`/admin/departments/${id}`)
       setFormData({
         departmentName: response.data.department?.departmentName || '',
         departmentCode: response.data.department?.departmentCode || ''
@@ -55,7 +55,7 @@ const EditDepartment = () => {
     setSubmitting(true)
 
     try {
-      await api.put(`/api/admin/departments/${id}`, formData)
+      await api.put(`/admin/departments/${id}`, formData)
       setSuccess('Configuration updated successfully!')
       setTimeout(() => navigate('/admin/departments'), 2000)
     } catch (error) {

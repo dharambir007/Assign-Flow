@@ -46,7 +46,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/auth/forgot-password', { email });
+      await api.post('/auth/forgot-password', { email });
       setSuccess('A verification code has been sent to your email address.');
       setStep(2);
     } catch (err) {
@@ -74,7 +74,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/auth/verify-otp', { email, otp });
+      await api.post('/auth/verify-otp', { email, otp });
       setSuccess('Code verified successfully.');
       setStep(3);
     } catch (err) {
@@ -107,7 +107,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/auth/reset-password', { email, otp, password });
+      await api.post('/auth/reset-password', { email, otp, password });
       setSuccess('Password reset successfully. Redirecting to login...');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
@@ -123,7 +123,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/auth/forgot-password', { email });
+      await api.post('/auth/forgot-password', { email });
       setSuccess('A new verification code has been sent to your email.');
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to resend code. Please try again.');

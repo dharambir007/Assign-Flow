@@ -38,7 +38,7 @@ const CreateUser = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await api.get('/api/admin/departments')
+      const response = await api.get('/admin/departments')
       setDepartments(response.data.departments || [])
     } catch (error) {
       console.error('Error fetching departments:', error)
@@ -56,7 +56,7 @@ const CreateUser = () => {
     setLoading(true)
 
     try {
-      await api.post('/api/admin/users', formData)
+      await api.post('/admin/users', formData)
       setSuccess('Member successfully registered!')
       setFormData({ name: '', email: '', phone: '', password: '', role: '', department: '' })
       setTimeout(() => navigate('/admin/users'), 2000)

@@ -41,7 +41,7 @@ const Signup = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await api.get('/api/auth/departments');
+      const response = await api.get('/auth/departments');
       setDepartments(response.data.departments || []);
     } catch (error) {
       console.error('Error fetching departments:', error);
@@ -107,7 +107,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const response = await api.post('/api/auth/signup', {
+      const response = await api.post('/auth/signup', {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,

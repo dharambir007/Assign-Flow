@@ -70,7 +70,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await api.get('/api/professor/dashboard')
+      const response = await api.get('/professor/dashboard')
       setStats({
         pendingCount: response.data.pendingCount,
         approvedCount: response.data.approvedCount,

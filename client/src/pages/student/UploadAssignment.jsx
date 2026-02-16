@@ -62,7 +62,7 @@ const UploadAssignment = () => {
     data.append('assignmentFile', file)
 
     try {
-      await api.post('/api/student/upload', data, {
+      await api.post('/student/upload', data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       setSuccess('Assignment uploaded successfully!')
