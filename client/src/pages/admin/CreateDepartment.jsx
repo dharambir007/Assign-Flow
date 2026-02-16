@@ -16,7 +16,9 @@ import {
 const CreateDepartment = () => {
   const [formData, setFormData] = useState({
     departmentName: '',
-    departmentCode: ''
+    departmentCode: '',
+    programType: '',
+    address: ''
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -36,7 +38,7 @@ const CreateDepartment = () => {
     try {
       await api.post('/admin/departments', formData)
       setSuccess('Department registered successfully!')
-      setFormData({ departmentName: '', departmentCode: '' })
+      setFormData({ departmentName: '', departmentCode: '', programType: '', address: '' })
       setTimeout(() => navigate('/admin/departments'), 2000)
     } catch (error) {
       setError(error.response?.data?.message || 'Submission failed. Please check entity codes.')
@@ -358,6 +360,7 @@ const CreateDepartment = () => {
             )}
 
             <form style={styles.form} onSubmit={handleSubmit}>
+
               {/* Department Name Field */}
               <div style={styles.formGroup} className="form-group">
                 <label style={styles.label} htmlFor="departmentName">
@@ -373,14 +376,6 @@ const CreateDepartment = () => {
                     onChange={handleChange}
                     style={styles.input}
                     placeholder="e.g. Computer Science & Engineering"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--accent-500)'
-                      e.target.style.boxShadow = '0 0 0 3px var(--accent-100)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border-light)'
-                      e.target.style.boxShadow = 'none'
-                    }}
                     required
                   />
                 </div>
@@ -402,18 +397,50 @@ const CreateDepartment = () => {
                     onChange={handleChange}
                     style={styles.inputCode}
                     placeholder="e.g. CSE"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--accent-500)'
-                      e.target.style.boxShadow = '0 0 0 3px var(--accent-100)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border-light)'
-                      e.target.style.boxShadow = 'none'
-                    }}
                     required
                   />
                 </div>
                 <p style={styles.helperText}>Unique code identifier (2-4 characters)</p>
+              </div>
+
+              {/* Program Type Field */}
+              <div style={styles.formGroup} className="form-group">
+                <label style={styles.label} htmlFor="programType">
+                  Program Type
+                </label>
+                <div style={styles.inputWrapper} className="input-wrapper">
+                  <input
+                    id="programType"
+                    type="text"
+                    name="programType"
+                    value={formData.programType}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="e.g. Undergraduate, Postgraduate"
+                    required
+                  />
+                </div>
+                <p style={styles.helperText}>Specify the program type</p>
+              </div>
+
+              {/* Address Field */}
+              <div style={styles.formGroup} className="form-group">
+                <label style={styles.label} htmlFor="address">
+                  Address
+                </label>
+                <div style={styles.inputWrapper} className="input-wrapper">
+                  <input
+                    id="address"
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    style={styles.input}
+                    placeholder="e.g. Block A, Main Campus"
+                    required
+                  />
+                </div>
+                <p style={styles.helperText}>Enter the department address</p>
               </div>
 
               {/* Submit Button */}
