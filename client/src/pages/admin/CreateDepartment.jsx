@@ -16,7 +16,6 @@ import {
 const CreateDepartment = () => {
   const [formData, setFormData] = useState({
     departmentName: '',
-    departmentCode: '',
     programType: '',
     address: ''
   })
@@ -38,7 +37,7 @@ const CreateDepartment = () => {
     try {
       await api.post('/admin/departments', formData)
       setSuccess('Department registered successfully!')
-      setFormData({ departmentName: '', departmentCode: '', programType: '', address: '' })
+      setFormData({ departmentName: '', programType: '', address: '' })
       setTimeout(() => navigate('/admin/departments'), 2000)
     } catch (error) {
       setError(error.response?.data?.message || 'Submission failed. Please check entity codes.')
@@ -361,6 +360,7 @@ const CreateDepartment = () => {
 
             <form style={styles.form} onSubmit={handleSubmit}>
 
+
               {/* Department Name Field */}
               <div style={styles.formGroup} className="form-group">
                 <label style={styles.label} htmlFor="departmentName">
@@ -380,27 +380,6 @@ const CreateDepartment = () => {
                   />
                 </div>
                 <p style={styles.helperText}>Enter the complete official name</p>
-              </div>
-
-              {/* Department Code Field */}
-              <div style={styles.formGroup} className="form-group">
-                <label style={styles.label} htmlFor="departmentCode">
-                  Registration Code
-                </label>
-                <div style={styles.inputWrapper} className="input-wrapper">
-                  <Hash size={16} style={styles.inputIcon} />
-                  <input
-                    id="departmentCode"
-                    type="text"
-                    name="departmentCode"
-                    value={formData.departmentCode}
-                    onChange={handleChange}
-                    style={styles.inputCode}
-                    placeholder="e.g. CSE"
-                    required
-                  />
-                </div>
-                <p style={styles.helperText}>Unique code identifier (2-4 characters)</p>
               </div>
 
               {/* Program Type Field */}
