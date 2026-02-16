@@ -5,14 +5,14 @@ const app = express();
 const session = require("express-session");
 const cors = require("cors");
 
-const connectDB = require("../backend/config/db");
-const { verifyConnection } = require("../backend/utils/emailService");
+const connectDB = require("./config/db"); // Adjusted path
+const { verifyConnection } = require("./utils/emailService"); // Adjusted path
 
-const authRoutes = require("../backend/routes/authRoute");
-const adminRoutes = require("../backend/routes/adminRoute");
-const studentRoutes = require("../backend/routes/studentRoute");
-const professorRoutes = require("../backend/routes/professorRoute");
-const hodRoutes = require("../backend/routes/hodRoute");
+const authRoutes = require("./routes/authRoute"); // Adjusted path
+const adminRoutes = require("./routes/adminRoute"); // Adjusted path
+const studentRoutes = require("./routes/studentRoute"); // Adjusted path
+const professorRoutes = require("./routes/professorRoute"); // Adjusted path
+const hodRoutes = require("./routes/hodRoute"); // Adjusted path
 
 connectDB();
 
@@ -40,13 +40,13 @@ app.use(session({
     }
 }));
 
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/student", studentRoutes);
-app.use("/api/professor", professorRoutes);
-app.use("/api/hod", hodRoutes);
+app.use("/auth", authRoutes);
+app.use("/admin", adminRoutes);
+app.use("/student", studentRoutes);
+app.use("/professor", professorRoutes);
+app.use("/hod", hodRoutes);
 
-app.get("/api/health", (req, res) => {
+app.get("/", (req, res) => {
     res.json({ status: "ok", message: "Server is running" });
 });
 
@@ -57,6 +57,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+// Vercel serverless environment doesn't use app.listen
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, async () => {
         console.log(`Server started on port ${PORT}`);
@@ -64,4 +65,5 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
+// Export the Express API for Vercel
 module.exports = app;
